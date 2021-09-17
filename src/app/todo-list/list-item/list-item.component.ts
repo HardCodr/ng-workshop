@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Todo }                                                      from "./list-item.interfaces";
 
 @Component({
   selector: 'app-list-item',
@@ -6,25 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-item.component.scss']
 })
 export class ListItemComponent implements OnInit {
-
-  todoList: Todo[] = [
-    {
-      description: 'Eat',
-      done: false
-    },
-    {
-      description: 'Sleep',
-      done: false
-    },
-    {
-      description: 'Drink beer',
-      done: false
-    },
-    {
-      description: 'Write code',
-      done: false
-    }
-  ];
+  newEntry = 'text';
+  @Input() data: Todo[] | undefined = [];
+  @Output() whenAddNewData: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {
   }
@@ -32,14 +17,17 @@ export class ListItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onChange(event: Event) {
+    console.log(event);
+  }
+
   toggleCheck($event: Event, listItem: Todo) {
     listItem.done = !listItem.done;
   }
 
+  addToList(item: string) {
+    this.whenAddNewData?.emit(item);
+  }
 
-}
 
-interface Todo {
-  description: string,
-  done: boolean,
 }

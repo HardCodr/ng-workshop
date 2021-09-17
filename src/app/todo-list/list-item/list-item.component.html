@@ -1,8 +1,16 @@
 <ul>
   <li
-    *ngFor="let item of todoList"
+    *ngFor="let item of data"
     [class.checked]="item.done"
     (click)="toggleCheck($event, item)">
     {{item.description}} ---> {{item.done}}
   </li>
 </ul>
+
+<input
+  type="text"
+  [(ngModel)]="newEntry"
+  (ngModelChange)="onChange($event)"
+/>
+
+<button (click)="addToList(newEntry)">Add to list</button>
