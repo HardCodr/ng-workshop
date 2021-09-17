@@ -1,0 +1,8 @@
+<ul>
+  <li
+    *ngFor="let item of todoList"
+    [class.checked]="item.done"
+    (click)="toggleCheck($event, item)">
+    {{item.description}} ---> {{item.done}}
+  </li>
+</ul>
