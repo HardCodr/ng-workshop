@@ -18,10 +18,13 @@ export class ProfileEditorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.profileForm.valueChanges.subscribe((data) => {
+      console.log(data);
+    });
   }
 
   onSubmit() {
-    console.log(this.profileForm.value);
+    console.log(this.profileForm);
   }
 
 }
