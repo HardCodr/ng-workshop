@@ -5,8 +5,8 @@ import { AppRoutingModule }       from './app-routing.module';
 import { AppComponent }           from './app.component';
 import { SharedModule }           from "./shared/shared.module";
 import { TodoListModule }         from "./todo-list/todo-list.module";
-import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
-import { ReactiveFormsModule }    from "@angular/forms";
+import { ProfileEditorComponent }           from './profile-editor/profile-editor.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { ReactiveFormsModule }    from "@angular/forms";
     AppRoutingModule,
     SharedModule,
     TodoListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

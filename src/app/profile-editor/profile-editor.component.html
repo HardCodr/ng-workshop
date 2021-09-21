@@ -2,10 +2,54 @@
   <label>First Name:
     <input formControlName="firstName" type="text" />
   </label>
+  <p *ngIf="!profileForm.controls.firstName.valid && formHasBeenSubmitted">First name is required</p>
   <label>Last Name:
     <input formControlName="lastName" type="text" />
   </label>
+  <p *ngIf="!profileForm.controls.lastName.valid && formHasBeenSubmitted">Last name is required</p>
+
+  <div formGroupName="address">
+    Street: <br/>
+    <input formControlName="street" type="text" /><br/>
+    City: <br/>
+    <input formControlName="city" type="text" /><br/>
+    State: <br/>
+    <input formControlName="state" type="text" /><br/>
+    Zip: <br/>
+    <input formControlName="zip" type="text" /><br/>
+  </div>
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+
+  <div formArrayName="aliases">
+    <h2>Aliases</h2>
+    <button (click)="addAlias()">Add alias</button>
+
+    <div *ngFor="let alias of aliases.controls;let i = index">
+
+      <label>
+        Alias:
+        <input id="alias-{{i}}" type="text" [formControlName]="i" />
+      </label>
+
+    </div>
+  </div>
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+
   <button type="submit">Show me the form</button>
 </form>
+
+
+
+
+<input [(ngModel)]="valueToBeUpdated" />
+<button (click)="updateLastName(valueToBeUpdated)">Update Last Name with {{valueToBeUpdated}}</button>
 
 <p>  Is the form valid? -> <strong>{{profileForm.valid}}</strong> </p>
