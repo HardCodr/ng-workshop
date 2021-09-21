@@ -26,6 +26,7 @@ export class ListItemComponent implements OnInit {
   }
 
   addToList(item: string) {
+    debugger;
     this.whenAddNewData?.emit(item);
   }
 

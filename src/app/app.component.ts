@@ -29,6 +29,7 @@ export class AppComponent {
   ];
 
   updateList(str: string) {
+    debugger;
     this.todoList.push({
       description: str,
       done: false

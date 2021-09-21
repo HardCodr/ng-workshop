@@ -1,0 +1,8 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <label>First Name:
+    <input formControlName="firstName" type="text" />
+  </label>
+  <label>Last Name:
+    <input formControlName="lastName" type="text" />
+  </label>
+</form>
