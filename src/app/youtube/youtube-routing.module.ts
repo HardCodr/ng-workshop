@@ -1,11 +1,13 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { YoutubeComponent }     from "./youtube.component";
+import { TestGuard }            from "./test.guard";
 
 const routes: Routes = [
   {
     path: 'youtube',
-    component: YoutubeComponent
+    component: YoutubeComponent,
+    canActivate: [TestGuard]
   }
 ];
 

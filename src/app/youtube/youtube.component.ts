@@ -10,7 +10,9 @@ import { filter, tap }    from "rxjs/operators";
 export class YoutubeComponent implements OnInit {
 
   searchResults: SearchResult[] = [];
-  searchText: string = '';
+  searchText: string = 'electro boom';
+  showError: boolean = false;
+  lastQuery: string = '';
 
   constructor(
     public YoutubeService: YoutubeService
@@ -20,11 +22,30 @@ export class YoutubeComponent implements OnInit {
 
   }
 
-  search(str: string) {
-    this.YoutubeService.getSearchResults(str)
-      .subscribe((data) => {
-        this.searchResults = data.items;
-      });
+  async search(str: string) {
+    const data = await this.searchAsync(str);
+    this.searchResults = data.items;
+    if (this.searchResults.length === 0 && this.searchText.length !== 0) {
+      this.showError = true;
+    }
+    // this.YoutubeService.getSearchResults(str)
+    //   .toPromise()
+    //   .then((data) => {
+    //     this.searchResults = data.items;
+    //   });
+  }
+
+  async searchAsync(str: string) {
+    this.lastQuery = str;
+    return await this.YoutubeService.getSearchResults(str).toPromise();
+  }
+
+  visitChannel(video: SearchResult) {
+    window.location.href = `https://www.youtube.com/channel/${video.id.channelId}`;
+  }
+
+  logMe(obj: any) {
+    console.log(obj);
   }
 
 }
@@ -39,6 +60,7 @@ export interface SearchResult {
 export interface SearchResultId {
   kind: string;
   videoId: string;
+  channelId: string;
 }
 
 export interface SearchResultSnippet {

@@ -20,4 +20,10 @@ export class YoutubeService {
     return this.http.get(url);
   }
 
+  isAuthorized() {
+    // logic here
+
+    return true;
+  }
+
 }

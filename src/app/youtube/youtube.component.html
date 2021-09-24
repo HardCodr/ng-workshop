@@ -5,6 +5,14 @@
 
 <ul>
   <li *ngFor="let video of searchResults">
-    <pre>{{video | json}}</pre>
+    <h2>{{video.snippet.title}}</h2>
+    <p>{{video.snippet.description}}</p>
+    <img [src]="video.snippet.thumbnails.high.url" width="500" />
+    <p>{{video.snippet.publishedAt | date:'medium'}}</p>
+    <p><a (click)="visitChannel(video)">go to channel</a></p>
+    <button (click)="logMe(video)">Debug</button>
+  </li>
+  <li *ngIf="showError">
+    Sorry! No results for your query {{lastQuery}}
   </li>
 </ul>
