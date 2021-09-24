@@ -1,0 +1,10 @@
+<p>youtube works!</p>
+
+<input type="text" [(ngModel)]="searchText" />
+<button (click)="search(searchText)">Search</button>
+
+<ul>
+  <li *ngFor="let video of searchResults">
+    <pre>{{video | json}}</pre>
+  </li>
+</ul>
